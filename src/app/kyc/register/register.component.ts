@@ -1,3 +1,4 @@
+import { VendorService } from './../../services/vendor.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { User, UserType, Mode } from './../../models/user';
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   one = 1;
   cooperative_data: string[];
 
-  constructor(public fb: FormBuilder, public _authService: AuthService, public router: Router, public dialog: MatDialog) {
+  constructor(public fb: FormBuilder, public _authService: AuthService, public router: Router, public dialog: MatDialog, public _vendorService: VendorService) {
   }
 
   ngOnInit() {
@@ -96,13 +97,22 @@ export class RegisterComponent implements OnInit {
   }
 
   vendorRegister() {
-    // "id": "damolaawesu@yahoo.com",
-    // "mode": "New",
-    // "cooperativeId": " ",
-    // "name": "bname",
-    // "usertype": "vendor",
-    // "phoneNo": "07034897268"
-    console.log('Vendor Registration and Login is still being implemented')
+    const _usertype = (this.userTypes.find(ut => ut.id === this.userTypeSelector));
+    const _usermode = this.userModes[0].name;
+    const _bname = this.vendorRegisterForm.controls['businessName'].value;
+    const _email = this.vendorRegisterForm.controls['vendorEmail'].value;
+
+    if (_usertype && _usermode && _bname && _email) {
+      // Persisting Vendor Data
+    this._vendorService.changeUserType(_usertype.name);
+    this._vendorService.changeUserMode(_usermode);
+    this._vendorService.changeBName(_bname);
+    this._vendorService.changeEmail(_email);
+
+    this.router.navigate(['/vendor-phone']);
+    } else {
+    console.log('Vendor Registration isnt properly filled');    
+    }
   }
 
   createForm() {

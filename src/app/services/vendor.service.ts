@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap, } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -109,6 +109,39 @@ export class VendorService {
       catchError(this.handleError)
       );
   }
+
+  // VENDOR REGISTRATION DATASTORE
+        // Vendor Registration Fields
+        private _usertypeDefualt = new BehaviorSubject<string>('Empty');
+        private _usermodeDefualt = new BehaviorSubject<string>('Empty');
+        private _bnameDefualt = new BehaviorSubject<string>('Empty');
+        private _emailDefualt = new BehaviorSubject<string>('Empty');
+        private _phoneDefualt = new BehaviorSubject<string>('Empty');
+
+        // Vendor Registration Fields
+        _usertype = this._usertypeDefualt.asObservable();
+        _usermode = this._usermodeDefualt.asObservable();
+        _bname = this._bnameDefualt.asObservable();
+        _email = this._emailDefualt.asObservable();
+        _phone = this._phoneDefualt.asObservable();
+
+        // Change Vendor Registration Values from Registration Component
+        changeUserType(flag: string) {
+          this._usertypeDefualt.next(flag)
+        }
+        changeUserMode(flag: string) {
+          this._usermodeDefualt.next(flag)
+        }
+        changeBName(flag: string) {
+          this._bnameDefualt.next(flag)
+        }
+        changeEmail(flag: string) {
+          this._emailDefualt.next(flag)
+        }
+        // Change Vendor Registration Values from Phone Verification Component
+        changePhone(flag: string) {
+          this._phoneDefualt.next(flag)
+        }
 
   // HANDLE ALL ERRORS
   private handleError(error: HttpErrorResponse) {

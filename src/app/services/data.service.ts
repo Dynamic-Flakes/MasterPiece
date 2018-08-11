@@ -11,7 +11,6 @@ export class DataService {
   private persistUserPassword = new BehaviorSubject<string>('No Password');
   // Changed first in Forgot/Change Password Component
   private otp = new BehaviorSubject<string>('No Otp');
-
   private otpControl = new BehaviorSubject<string>('first');
 
   currentUserId = this.persistUserId.asObservable();

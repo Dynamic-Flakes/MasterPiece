@@ -6,6 +6,15 @@ export class User {
     usertype: string
 }
 
+export class Vendor {
+    id: string;
+    mode: string;
+    cooperativeId: string;
+    name: string;
+    usertype: string;
+    phoneNo: string;
+}
+
 // User type enum
 export class UserType {
     types = [

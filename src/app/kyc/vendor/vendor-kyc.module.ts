@@ -1,5 +1,5 @@
 import { VendorBankComponent } from './vendor-bank/vendor-bank.component';
-import { PhoneVerificationComponent } from './phone-verification/phone-verification.component';
+import { PhoneVerificationComponent, RegisterSuccessDialog } from './phone-verification/phone-verification.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -34,16 +34,17 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatMenuModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   declarations: [
     PhoneVerificationComponent,
     VendorBankComponent,
     VendorLoginComponent,
     VendorOtpComponent,
-    VendorSetPasswordComponent
+    VendorSetPasswordComponent,
+    RegisterSuccessDialog
   ],
-  entryComponents: [],
+  entryComponents: [RegisterSuccessDialog],
   exports: [
     PhoneVerificationComponent,
     VendorBankComponent,
