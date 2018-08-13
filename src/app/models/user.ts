@@ -18,8 +18,8 @@ export class Vendor {
 // User type enum
 export class UserType {
     types = [
-        { id: 1, name: 'cooperator' },
-        { id: 2, name: 'vendor' }
+        { id: 1, name: 'Cooperator' },
+        { id: 2, name: 'Vendor' }
     ]
 }
 

@@ -1,3 +1,4 @@
+import { UserType } from './../../models/user';
 import { Router } from '@angular/router';
 import { DataService } from './../../services/data.service';
 import { AuthService } from './../../services/auth.service';
@@ -42,6 +43,9 @@ export class OtpComponent implements OnInit, AfterViewInit {
     });
 
   }
+
+  // Require user types
+  userTypes = new UserType().types;
 
   openDialog(): void {
     console.log('trying to open..')
@@ -91,6 +95,10 @@ export class OtpComponent implements OnInit, AfterViewInit {
           console.log(res);
           console.log('BINGO!!!');
 
+          console.log(res.data.user.userTypeId);
+
+          // COOPERATOR
+          if (res.data.user.userTypeId == this.userTypes[0].name) {
           // FLAG KEEPS TRACK OF OTP SCREEN USAGE
           if (this.otpFlag === 'first')
             this.router.navigate(['/kyc/transaction-pin']);
@@ -99,6 +107,19 @@ export class OtpComponent implements OnInit, AfterViewInit {
             this.openDialog();
             console.log('Done!!!');            
           }
+        }
+
+         // VENDOR
+         if (res.data.user.userTypeId == this.userTypes[1].name) {
+          // FLAG KEEPS TRACK OF OTP SCREEN USAGE
+          if (this.otpFlag === 'first')
+            this.router.navigate(['vendor-bank']);
+
+          if (this.otpFlag === 'second') {
+            this.openDialog();
+            console.log('Done!!!');            
+          }
+        }
         }
         );
 

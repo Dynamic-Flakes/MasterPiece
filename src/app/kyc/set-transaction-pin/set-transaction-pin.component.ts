@@ -25,7 +25,7 @@ export class SetTransactionPinComponent implements OnInit {
     console.log('Id:' + this.userId);
   }
 
-  resetPassword() {
+  changePin() {
     const userModel = {
       pin: this.changePinForm.controls['pin'].value,
       confirmpin: this.changePinForm.controls['conPin'].value,

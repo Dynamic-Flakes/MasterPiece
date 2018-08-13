@@ -12,7 +12,8 @@
 
       <div class="set_password">
         <div id="login_title">Set Transaction Pin</div>
-        <form [formGroup]="changePinForm" (submit)="resetPassword()">
+        <form [formGroup]="changePinForm" (submit)="changePin()">
+          <!-- Validation Message -->
           <div *ngIf="(changePinForm.controls['pin'].errors?.required && (changePinForm.controls['pin'].touched || changePinForm.controls['pin'].dirty))"
             class="invalid animated bounceIn">
             Required.

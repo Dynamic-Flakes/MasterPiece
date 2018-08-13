@@ -42,10 +42,10 @@ export class LoginComponent implements OnInit {
       console.log(res);
       if (res.success == true) {
 
-        console.log(res.UserType);
+        console.log(res.data.user.userTypeId);
 
         // IF USER IS A COOPERATOR
-        if (res.UserType == this.userTypes[0].name) {
+        if (res.data.user.userTypeId == this.userTypes[0].name) {
           this._authService.storeUserData(res.data.token.token, res.data.user);
             // Sending Mongo Id and Temporary Password to Data Store
             const _id = res.data.user._id;
@@ -71,15 +71,29 @@ export class LoginComponent implements OnInit {
         }
 
         // IF USER IS A VENDOR
-        if (res.UserType == this.userTypes[1].name) {
-            this._authService.storeUserData(res.data.token.token, res.data.user);
+        if (res.data.user.userTypeId == this.userTypes[1].name) {
+            this._vendorService.storeUserData(res.data.token.token, res.data.user);
             // Sending Mongo Id and Temporary Password to Data Store
             const _id = res.data.user._id;
             const _pass = this.data.changeUserId(_id);
             this.data.changeUserPassword(this.tempPassword);
 
-            // Navigating Reset to Password Page
+            // CHECK WHERE USER STOPPED IN THE REGISTERATION PROCESS AND CONTINUE
+            console.log(`This is the current userMode:- ${res.data.user.userMode}`);
+            const _userMode = res.data.user.userMode;
+            if (_userMode === 'New') {
+              // Navigating to Reset Password Page
+            this.router.navigate(['/kyc/change-password']);
+            } if (_userMode === 'OTPverify') {
+              // Navigating to First Otp Page
             this.router.navigate(['/kyc/otp']);
+            } if (_userMode === 'AccountDetails') {
+              // Navigating to Set Transaction Pin Page
+            this.router.navigate(['vendor-bank']);
+            } if (_userMode === 'Confirm') {
+              // Navigating to Cooperator Dashboard
+            this.router.navigate(['/shop/history/transactions']);
+            }
         }
       } else {
       }

@@ -29,8 +29,6 @@ import { RegisterComponent, RegisterSuccessDialog } from './kyc/register/registe
 import { ShopComponent } from './shop/shop.component';
 import { KycComponent } from './kyc/kyc.component';
 import { ForgotPasswordComponent } from './kyc/forgot-password/forgot-password.component';
-import { VendorBankComponent } from './kyc/vendor-bank/vendor-bank.component';
-import { PhoneVerificationComponent } from './kyc/phone-verification/phone-verification.component';
 import { OtpComponent, IntialSetupCompleteDialog } from './kyc/otp/otp.component';
 import { DetailsPageComponent } from './shop/details-page/details-page.component';
 import { CooperatorThankYouComponent } from './shop/cooperator-thank-you/cooperator-thank-you.component';
@@ -99,9 +97,7 @@ const appRoutes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'change-password', component: ForgotPasswordComponent },
-      { path: 'phone-verification', component: PhoneVerificationComponent },
       { path: 'otp', component: OtpComponent },
-      { path: 'vendor-bank', component: VendorBankComponent },
       { path: 'transaction-pin', component: SetTransactionPinComponent }
     ]
   },
@@ -155,8 +151,6 @@ const appRoutes: Routes = [
     ShopComponent,
     KycComponent,
     ForgotPasswordComponent,
-    VendorBankComponent,
-    PhoneVerificationComponent,
     OtpComponent,
     DetailsPageComponent,
     CooperatorThankYouComponent,

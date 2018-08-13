@@ -9,16 +9,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule, MatIconModule, MatDialogModule } from '@angular/material';
-import { VendorLoginComponent } from './vendor-login/vendor-login.component';
-import { VendorOtpComponent } from './vendor-otp/vendor-otp.component';
-import { VendorSetPasswordComponent } from './vendor-set-password/vendor-set-password.component';
 
 const appRoutes: Routes = [
   { path: 'vendor-phone', component: PhoneVerificationComponent },
   { path: 'vendor-bank', component: VendorBankComponent },
-  { path: 'vendor-login', component: VendorLoginComponent },
-  { path: 'vendor-otp', component: VendorOtpComponent },
-  { path: 'vendor-password', component: VendorSetPasswordComponent },
 ]
 
 @NgModule({
@@ -39,18 +33,12 @@ const appRoutes: Routes = [
   declarations: [
     PhoneVerificationComponent,
     VendorBankComponent,
-    VendorLoginComponent,
-    VendorOtpComponent,
-    VendorSetPasswordComponent,
     RegisterSuccessDialog
   ],
   entryComponents: [RegisterSuccessDialog],
   exports: [
     PhoneVerificationComponent,
     VendorBankComponent,
-    VendorLoginComponent,
-    VendorOtpComponent,
-    VendorSetPasswordComponent
   ],
   providers: []
 })
