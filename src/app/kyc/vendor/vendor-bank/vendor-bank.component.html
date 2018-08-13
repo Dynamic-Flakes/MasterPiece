@@ -12,55 +12,56 @@
   
         <div class="bank_details">
           <div id="login_title">Enter Bank Details</div>
-          <form [formGroup]="accountDetailForm" (submit)="setAccountDetails()">
+          <form [formGroup]="accDetailForm" (submit)="setAccountDetails()">
             <!-- Validation Message -->
-            <div *ngIf="(accountDetailForm.controls['acc_number'].errors?.required && (accountDetailForm.controls['acc_number'].touched || accountDetailForm.controls['acc_number'].dirty))"
+            <div *ngIf="(accDetailForm.controls['accNumber'].errors?.required && (accDetailForm.controls['accNumber'].touched || accDetailForm.controls['accNumber'].dirty))"
             class="invalid animated bounceIn">
             Required.
           </div>
-          <div *ngIf="(accountDetailForm.controls['acc_number'].errors?.minlength)" class="invalid animated bounceIn">
+          <div *ngIf="(accDetailForm.controls['accNumber'].errors?.minlength)" class="invalid animated bounceIn">
             Minimum Length is 3.
           </div>
-          <div *ngIf="(accountDetailForm.controls['acc_number'].valid)" class="valid animated flash">
+          <div *ngIf="(accDetailForm.controls['accNumber'].valid)" class="valid animated flash">
             OK.
           </div>
           <!--/End Validation Message -->
             <p>
-              <input type="text" formControlName="acc_number" class="acc_number" placeholder="Account Number" autocomplete="new-password">
+              <input type="text" formControlName="accNumber" class="acc_number" placeholder="Account Number" autocomplete="new-password">
             </p>
             <!-- Validation Message -->
-            <div *ngIf="(accountDetailForm.controls['acc_name'].errors?.required && (accountDetailForm.controls['acc_name'].touched || accountDetailForm.controls['acc_name'].dirty))"
+            <div *ngIf="(accDetailForm.controls['accName'].errors?.required && (accDetailForm.controls['accName'].touched || accDetailForm.controls['accName'].dirty))"
             class="invalid animated bounceIn">
             Required.
           </div>
-          <div *ngIf="(accountDetailForm.controls['acc_name'].errors?.minlength)" class="invalid animated bounceIn">
+          <div *ngIf="(accDetailForm.controls['accName'].errors?.minlength)" class="invalid animated bounceIn">
             Minimum Length is 3.
           </div>
-          <div *ngIf="(accountDetailForm.controls['acc_name'].valid)" class="valid animated flash">
+          <div *ngIf="(accDetailForm.controls['accName'].valid)" class="valid animated flash">
             OK.
           </div>
           <!--/End Validation Message -->
             <p>
-              <input type="password" name="acc_name" class="acc_name" placeholder="Account Name" autocomplete="new-password">
+              <input type="text" formControlName="accName" class="acc_name" placeholder="Account Name" autocomplete="new-password">
             </p>
              <!-- Validation Message -->
-             <div *ngIf="(accountDetailForm.controls['bank'].errors?.required && (accountDetailForm.controls['bank'].touched || accountDetailForm.controls['bank'].dirty))"
+             <div *ngIf="(accDetailForm.controls['bank'].errors?.required && (accDetailForm.controls['bank'].touched || accDetailForm.controls['bank'].dirty))"
              class="invalid animated bounceIn">
              Required.
            </div>
-           <div *ngIf="(accountDetailForm.controls['bank'].valid)" class="valid animated flash">
+           <div *ngIf="(accDetailForm.controls['bank'].valid)" class="valid animated flash">
              OK.
            </div>
            <!--/End Validation Message -->
             <p>
               <select type="text" formControlName="bank" class="bank">
-                   <option value="">Zenith Bank Ltd</option>
-                   <option value="">United Bank of Africa</option>
-                   <option value="">First Bank</option>
+                  <option disabled selected value style="color: rgb(170, 170, 170, .5);">Select Your Bank</option>
+                   <option value="1">Zenith Bank Ltd</option>
+                   <option value="2">United Bank of Africa</option>
+                   <option value="3">First Bank</option>
               </select>
             </p>
             <p class="full">
-              <button type="submit"  [disabled]="!accountDetailForm.valid" style="background-image: -moz-linear-gradient( -135deg, rgb(255,144,0) 0%, rgb(255,23,23) 100%) !important;
+              <button type="submit" [disabled]="!accDetailForm.valid" style="background-image: -moz-linear-gradient( -135deg, rgb(255,144,0) 0%, rgb(255,23,23) 100%) !important;
               background-image: -webkit-linear-gradient( -135deg, rgb(255,144,0) 0%, rgb(255,23,23) 100%) !important;
               background-image: -ms-linear-gradient( -135deg, rgb(255,144,0) 0%, rgb(255,23,23) 100%) !important;">FINISH</button>
             </p>

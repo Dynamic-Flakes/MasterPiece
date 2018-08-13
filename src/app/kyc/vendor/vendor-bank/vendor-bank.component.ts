@@ -13,7 +13,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./vendor-bank.component.css']
 })
 export class VendorBankComponent implements OnInit {
-  accountDetailForm;
+  accDetailForm;
   userId;
 
   constructor(
@@ -32,9 +32,9 @@ export class VendorBankComponent implements OnInit {
 
   setAccountDetails() {
     const userModel = {
-      accNumber: this.accountDetailForm.controls['accNumber'].value,
-      accName: this.accountDetailForm.controls['accName'].value,
-      bank: this.accountDetailForm.controls['bank'].value
+      accNumber: this.accDetailForm.controls['accNumber'].value,
+      accName: this.accDetailForm.controls['accName'].value,
+      bank: this.accDetailForm.controls['bank'].value
     };
 
     if (userModel.accNumber && userModel.accName && userModel.bank) {
@@ -73,7 +73,7 @@ export class VendorBankComponent implements OnInit {
   }
 
   createForm() {
-    this.accountDetailForm = this.fb.group({
+    this.accDetailForm = this.fb.group({
       accNumber: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       accName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       bank: this.fb.control('', [Validators.required])

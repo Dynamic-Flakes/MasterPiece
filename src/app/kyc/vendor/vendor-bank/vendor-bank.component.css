@@ -285,3 +285,12 @@
     text-align: right;
     font-size: 13px;
   }
+
+  .bank_details form input:focus, .bank_details form select:focus {
+    border: 1px solid #333333 !important;
+    color: #333333 !important;
+  }
+  
+  .bank_details form input, .bank_details form select {
+    margin: 0 15px 30px 0 !important;
+  }
