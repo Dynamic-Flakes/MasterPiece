@@ -18,18 +18,18 @@ export class VendorService {
   constructor(private http: HttpClient) { }
 
 
-  // POST: REGISTER USER
-  registerVendor(vendor): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/users/cooperativestaff`, vendor, this.httpHeaders)
+  // GET: ALL COOPERATIVES
+  getBanks(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/banks`, this.httpHeaders)
       .pipe(
       map(res => { return res }),
       catchError(this.handleError)
       );
   }
 
-  // POST: USER LOGIN
-  authenticateVendor(vendor): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/auth`, vendor, this.httpHeaders)
+  // POST: REGISTER USER
+  registerVendor(vendor): Observable<any> {
+    return this.http.post(`${this.BASE_URL}/users/cooperativestaff`, vendor, this.httpHeaders)
       .pipe(
       map(res => { return res }),
       catchError(this.handleError)
@@ -72,33 +72,6 @@ export class VendorService {
     this.authToken = null;
     this.vendor = null;
     localStorage.clear();
-  }
-
-  // POST: RESET USER PASSWORD
-  resetPassword(id, contract): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/users/resetpassword/${id}`, contract, this.httpHeaders)
-      .pipe(
-      map(res => { return res }),
-      catchError(this.handleError)
-      );
-  }
-
-  // GET: USER OTP
-  getOtp(id): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/verifyauths/sendotp/${id}`, this.httpHeaders)
-      .pipe(
-      map(res => { return res }),
-      catchError(this.handleError)
-      );
-  }
-
-  // GET: USER OTP
-  verifyOtp(id, userId): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/verifyauths/${id}/${userId}`, this.httpHeaders)
-      .pipe(
-      map(res => { return res }),
-      catchError(this.handleError)
-      );
   }
 
   // POST: TRANSACTION PIN

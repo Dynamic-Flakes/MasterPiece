@@ -15,6 +15,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class VendorBankComponent implements OnInit {
   accDetailForm;
   userId;
+  vendorBanks: string[];
 
   constructor(
     public fb: FormBuilder, 
@@ -28,6 +29,14 @@ export class VendorBankComponent implements OnInit {
     this.createForm();
     this.data.currentUserId.subscribe(id => this.userId = id);
     console.log('Id:' + this.userId);
+
+    // GET ALL BANKS
+    this._vendorService.getBanks()
+    .subscribe(res => {
+      this.vendorBanks = res.data;
+    }, err => {
+      console.log(err);
+    });
   }
 
   setAccountDetails() {

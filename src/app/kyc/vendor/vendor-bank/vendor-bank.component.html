@@ -55,9 +55,7 @@
             <p>
               <select type="text" formControlName="bank" class="bank">
                   <option disabled selected value style="color: rgb(170, 170, 170, .5);">Select Your Bank</option>
-                   <option value="1">Zenith Bank Ltd</option>
-                   <option value="2">United Bank of Africa</option>
-                   <option value="3">First Bank</option>
+                  <option *ngFor="let bank of vendorBanks" [value]="bank._id">{{bank.bankName}}</option>
               </select>
             </p>
             <p class="full">
