@@ -41,12 +41,12 @@ export class VendorBankComponent implements OnInit {
 
   setAccountDetails() {
     const userModel = {
-      accNumber: this.accDetailForm.controls['accNumber'].value,
-      accName: this.accDetailForm.controls['accName'].value,
-      bank: this.accDetailForm.controls['bank'].value
+      accountnumber: this.accDetailForm.controls['accNumber'].value,
+      accountname: this.accDetailForm.controls['accName'].value,
+      bankId: this.accDetailForm.controls['bank'].value
     };
 
-    if (userModel.accNumber && userModel.accName && userModel.bank) {
+    if (userModel.accountnumber && userModel.accountname && userModel.bankId) {
       console.log(userModel);
       if (this.userId && this.userId != 'No Id') {
         this._vendorService.addAccountDetails(this.userId, userModel).subscribe(res => {
