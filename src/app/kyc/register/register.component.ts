@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
     console.log('trying to open..')
     const dialogRef = this.dialog.open(RegisterSuccessDialog, {
     });
-    dialogRef.afterClosed().subscribe(res => {
+    dialogRef.beforeClose().subscribe(res => {
       this.router.navigate(['/kyc/login']);
       console.log('The dialog was closed');
       console.log(res);
@@ -142,7 +142,6 @@ export class RegisterSuccessDialog {
     @Inject(MAT_DIALOG_DATA) public router: Router) { }
 
   onNoClick(): void {
-    this.router.navigate(['/kyc/login']);
     this.dialogRef.close();
   }
 }

@@ -22,6 +22,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
   concatUserInput;
   otp;
   sent = false; //Control for Resending OTP
+  goto = '/shop/history/transactions'
 
   constructor(public fb: FormBuilder, public _authService: AuthService, public data: DataService, public router: Router, public dialog: MatDialog) { }
 
@@ -36,6 +37,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    // Auto tab to next input
     $(".inputs").keyup(function () {
       if (this.value.length == this.maxLength) {
         $(this).next('.inputs').focus();
@@ -52,8 +54,8 @@ export class OtpComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(IntialSetupCompleteDialog, {
     });
 
-    dialogRef.afterClosed().subscribe(res => {
-      this.router.navigate(['/shop/history/transactions']);
+    dialogRef.beforeClose().subscribe(res => {
+      this.router.navigate([`${this.goto}`]);
       console.log('The dialog was closed');
       console.log(res);
     });
@@ -95,31 +97,32 @@ export class OtpComponent implements OnInit, AfterViewInit {
           console.log(res);
           console.log('BINGO!!!');
 
-          console.log(res.data.user.userTypeId);
+            // COOPERATOR
+            console.log(res.data.userTypeId);
+            if (res.data.userTypeId == this.userTypes[0].name) {
+            // FLAG KEEPS TRACK OF OTP SCREEN USAGE
+                if (this.otpFlag === 'first')
+                  this.router.navigate(['/kyc/transaction-pin']);
+            
+                if (this.otpFlag === 'second') {
+                  this.goto = '/shop/history/transactions';
+                  this.openDialog();
+                  console.log('Done!!!');            
+                }
+            }
+         
+            // VENDOR          
+            if (res.data.userTypeId == this.userTypes[1].name) {
+              // FLAG KEEPS TRACK OF OTP SCREEN USAGE
+              if (this.otpFlag === 'first')
+                this.router.navigate(['vendor-bank']);
 
-          // COOPERATOR
-          if (res.data.user.userTypeId == this.userTypes[0].name) {
-          // FLAG KEEPS TRACK OF OTP SCREEN USAGE
-          if (this.otpFlag === 'first')
-            this.router.navigate(['/kyc/transaction-pin']);
-
-          if (this.otpFlag === 'second') {
-            this.openDialog();
-            console.log('Done!!!');            
-          }
-        }
-
-         // VENDOR
-         if (res.data.user.userTypeId == this.userTypes[1].name) {
-          // FLAG KEEPS TRACK OF OTP SCREEN USAGE
-          if (this.otpFlag === 'first')
-            this.router.navigate(['vendor-bank']);
-
-          if (this.otpFlag === 'second') {
-            this.openDialog();
-            console.log('Done!!!');            
-          }
-        }
+              if (this.otpFlag === 'second') {
+                this.goto = 'vendor/my-transaction-history';
+                this.openDialog();
+                console.log('Done!!!'); 
+              }
+            }
         }
         );
 
@@ -144,7 +147,6 @@ export class OtpComponent implements OnInit, AfterViewInit {
       six: this.fb.control('', [Validators.required])
     });
   }
-
 }
 
 @Component({
@@ -159,7 +161,6 @@ export class IntialSetupCompleteDialog {
     @Inject(MAT_DIALOG_DATA) public router: Router) { }
 
   onNoClick(): void {
-    this.router.navigate(['/shop/history/transactions']);
     this.dialogRef.close();
   }
 }

@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../services/auth.guard';
 import { VendorBankComponent } from './vendor-bank/vendor-bank.component';
 import { PhoneVerificationComponent, RegisterSuccessDialog } from './phone-verification/phone-verification.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
