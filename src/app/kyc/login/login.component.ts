@@ -42,10 +42,12 @@ export class LoginComponent implements OnInit {
       console.log(res);
       if (res.success == true) {
 
-        console.log(res.data.user.userTypeId);
+        // console.log(res.data.user.userTypeId);
+        
 
         // IF USER IS A COOPERATOR
-        if (res.data.user.userTypeId == this.userTypes[0].name) {
+        if (res.data.user.userTypeId === undefined) {
+          console.log('UserTypeId was not found, meaning you are a cooperator');
           this._authService.storeUserData(res.data.token.token, res.data.user);
             // Sending Mongo Id and Temporary Password to Data Store
             const _id = res.data.user._id;
