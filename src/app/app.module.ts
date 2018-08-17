@@ -64,6 +64,7 @@ import { ComparePasswordDirective } from './shared/compare-password.directive';
 import { SetTransactionPinComponent } from './kyc/set-transaction-pin/set-transaction-pin.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { VendorKycModule } from './kyc/vendor/vendor-kyc.module';
+import { MimiCartComponent } from './shop/shopping-cart/mimi-cart/mimi-cart.component';
 
 
 const appRoutes: Routes = [
@@ -186,6 +187,7 @@ const appRoutes: Routes = [
     ComparePasswordDirective,
     SetTransactionPinComponent,
     IntialSetupCompleteDialog,
+    MimiCartComponent,
   ],
   entryComponents: [IntialSetupCompleteDialog, RegisterSuccessDialog],
   imports: [
