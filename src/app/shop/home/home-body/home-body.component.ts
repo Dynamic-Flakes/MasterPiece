@@ -1,4 +1,7 @@
+import { Product } from './../../../models/product';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ProductService } from '../../../services/product.service';
+// import 'products' from './../../../../assets/data/products.json';
 declare const jquery: any;
 declare const jQuery: any;
 declare const $: any;
@@ -9,17 +12,25 @@ declare const $: any;
   styleUrls: ['./home-body.component.css']
 })
 export class HomeBodyComponent implements OnInit, AfterViewInit {
+  products: any[];
 
-  constructor() { }
+  constructor(public productService: ProductService) { }
 
   ngOnInit() {
-
+    this.productService.getProducts().subscribe(
+      products => {
+        console.log(products);
+        this.productService.setAllProducts(products);
+        this.products = this.productService.getAllProducts();
+      },
+      err => console.log(err)
+    );
   }
 
   ngAfterViewInit() {
 
     // New Arrival Tab View
-    $("#feature").owlCarousel({
+    $("#new-arrival").owlCarousel({
       itemsCustom: [
         [0, 1],
         [600, 2],
@@ -97,9 +108,9 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
       navigation: true,
       pagination: false
     });
-
-
-    // Newsletter Message
-    // $("#newsletter_5b3f6107e5cd2").webiNewsletter().work(  'Email is not valid!' );
   }
+
+  // productsMethod(n: number, startFrom: number): number[] {
+  //   return Array.from(Array(n).keys());
+  // }
 }

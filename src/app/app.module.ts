@@ -1,3 +1,4 @@
+import { ProductService } from './services/product.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -65,6 +66,7 @@ import { SetTransactionPinComponent } from './kyc/set-transaction-pin/set-transa
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { VendorKycModule } from './kyc/vendor/vendor-kyc.module';
 import { MimiCartComponent } from './shop/shopping-cart/mimi-cart/mimi-cart.component';
+import { ProductCardComponent } from './shop/products/product-card/product-card.component';
 
 
 const appRoutes: Routes = [
@@ -188,6 +190,7 @@ const appRoutes: Routes = [
     SetTransactionPinComponent,
     IntialSetupCompleteDialog,
     MimiCartComponent,
+    ProductCardComponent,
   ],
   entryComponents: [IntialSetupCompleteDialog, RegisterSuccessDialog],
   imports: [
@@ -207,7 +210,7 @@ const appRoutes: Routes = [
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
   ],
-  providers: [AuthService],
+  providers: [AuthService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
