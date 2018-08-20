@@ -16,8 +16,16 @@ export class HomeSlidersComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    
+    $("#slideshow0").owlCarousel({
+      itemsCustom: [
+        [0, 1],
+        [600, 1],
+        [768, 1]
+      ],
+      autoPlay: 6000,
+      navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+      navigation: false,
+      pagination: true
+    });
   }
-
-
 }
