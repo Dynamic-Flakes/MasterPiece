@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
         
 
         // IF USER IS A COOPERATOR
-        if (res.data.user.userTypeId === undefined) {
-          console.log('UserTypeId was not found, meaning you are a cooperator');
+        if (res.data.user.userTypeId === this.userTypes[0].name) {
+          console.log(res.data.user.userTypeId);
           this._authService.storeUserData(res.data.token.token, res.data.user);
             // Sending Mongo Id and Temporary Password to Data Store
             const _id = res.data.user._id;
@@ -96,6 +96,10 @@ export class LoginComponent implements OnInit {
               // Navigating to Cooperator Dashboard
             this.router.navigate(['vendor/my-transaction-history']);
             }
+        }
+
+        if (res.data.user.userTypeId === undefined) {
+          console.log('No UserTypeId was not found. You will not be logged in.');
         }
       } else {
       }

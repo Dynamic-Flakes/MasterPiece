@@ -129,6 +129,9 @@ export class AuthService {
       if (error.status == 404) {
         return throwError('User Not Found!');
       }
+      if (error.status == 409) {
+        return throwError('You are already registered!');
+      }
     }
     return throwError('Oops, unable to complete! please try again later.');
   }
