@@ -61,7 +61,10 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
       pagination: false
     });
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 70bb4dad702d19df80b854a8470b0edd092ec788
     // On Sale Tab View
     $("#bestRated").owlCarousel({
       itemsCustom: [
