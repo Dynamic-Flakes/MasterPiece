@@ -67,6 +67,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { VendorKycModule } from './kyc/vendor/vendor-kyc.module';
 import { MimiCartComponent } from './shop/shopping-cart/mimi-cart/mimi-cart.component';
 import { ProductCardComponent } from './shop/products/product-card/product-card.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { BestRatedPipe } from './pipes/best-rated.pipe';
 
 
 const appRoutes: Routes = [
@@ -191,6 +195,10 @@ const appRoutes: Routes = [
     IntialSetupCompleteDialog,
     MimiCartComponent,
     ProductCardComponent,
+    FilterPipe,
+    SearchPipe,
+    TruncatePipe,
+    BestRatedPipe,
   ],
   entryComponents: [IntialSetupCompleteDialog, RegisterSuccessDialog],
   imports: [

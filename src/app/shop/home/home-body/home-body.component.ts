@@ -61,6 +61,23 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
       pagination: false
     });
 
+    
+    // On Sale Tab View
+    $("#bestRated").owlCarousel({
+      itemsCustom: [
+        [0, 1],
+        [600, 2],
+        [768, 2],
+        [992, 3],
+        [1200, 3],
+        [1590, 4]
+      ],
+      // autoPlay: 1000,
+      navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+      navigation: true,
+      pagination: false
+    });
+
     // To Categories This Week 
     $("#bestseller").owlCarousel({
       itemsCustom: [
