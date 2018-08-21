@@ -1,7 +1,6 @@
 import { Product } from './../../../models/product';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
-// import 'products' from './../../../../assets/data/products.json';
 declare const jquery: any;
 declare const jQuery: any;
 declare const $: any;
@@ -12,7 +11,10 @@ declare const $: any;
   styleUrls: ['./home-body.component.css']
 })
 export class HomeBodyComponent implements OnInit, AfterViewInit {
-  products: any[];
+  products: Product[];
+  filterBy: string;
+  searchText: string;
+  bestRatedFilter: number;
 
   constructor(public productService: ProductService) { }
 
@@ -25,6 +27,40 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
       },
       err => console.log(err)
     );
+
+    this.filterBy = this.productService.getFilter();
+    this.searchText = this.productService.getSearchFilter();
+    this.bestRatedFilter = this.productService.getBestRatedFilter();
+
+    this.productService.filterTypeEmitter.subscribe(
+      (filterValue: string) => {
+        this.filterBy = filterValue;
+      }
+    );
+    this.productService.searchEmitter.subscribe(
+      (searchValue: string) => {
+        this.searchText = searchValue;
+      }
+    );
+
+    this.productService.bestRatedEmitter.subscribe(
+      (besRatedValue: number) => {
+        this.bestRatedFilter = besRatedValue;
+      }
+    )
+  }
+
+  setFilter(filterValue: string) {
+    this.productService.setFilter(filterValue);
+  }
+
+  setBestRFilter(filterValue: number) {
+    this.productService.setBestRatedFilter(filterValue);
+  }
+
+  resetFilters() {
+    this.productService.setFilter('all');
+    this.productService.searchFilter('');
   }
 
   ngAfterViewInit() {
@@ -61,10 +97,6 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
       pagination: false
     });
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> 70bb4dad702d19df80b854a8470b0edd092ec788
     // On Sale Tab View
     $("#bestRated").owlCarousel({
       itemsCustom: [

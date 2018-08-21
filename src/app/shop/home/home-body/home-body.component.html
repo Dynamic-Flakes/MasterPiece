@@ -5,11 +5,11 @@
     <div class="tab-head">
       <!-- <h1 class="pull-left hidden-xs">treding product</h1> -->
       <ul class="nav nav-tabs text-right">
-        <li class="active fea"><a href="#new-arrival-wrapper" data-toggle="tab">New Arrivals</a></li>
+        <li class="active fea"><a href="#new-arrival-wrapper" data-toggle="tab" (click)="setFilter('New Arrival')">New Arrivals</a></li>
         <li class="sep"></li>
-        <li><a href="#latestp" data-toggle="tab">On Sale</a></li>
+        <li><a href="#latestp" data-toggle="tab" (click)="setFilter('On Sale')">On Sale</a></li>
         <li class="sep"></li>
-        <li><a href="#bestRatedp" data-toggle="tab">Best Rated</a></li>
+        <li><a href="#bestRatedp" data-toggle="tab" (click)="setBestRFilter(5)">Best Rated</a></li>
       </ul>
     </div>
   
@@ -20,19 +20,19 @@
         <div id="new-arrival" class="owl-theme owl-carousel">
   
           <div class="multi-row">
-              <app-product-card *ngFor="let product of products | slice:0:2; let i = index; let even = even; let odd = odd"  [product]="product"  [even]="even" [odd]="odd"></app-product-card>
+              <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:0:2; let i = index; let even = even; let odd = odd"  [product]="product"  [even]="even" [odd]="odd"></app-product-card>
           </div>
           <div class="multi-row">
-              <app-product-card *ngFor="let product of products | slice:2:4; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+              <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:2:4; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
           </div>
           <div class="multi-row">
-              <app-product-card *ngFor="let product of products | slice:4:6; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+              <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:4:6; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
           </div>
           <div class="multi-row">
-              <app-product-card *ngFor="let product of products | slice:6:8; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+              <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:6:8; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
           </div>
           <div class="multi-row">
-              <app-product-card *ngFor="let product of products | slice:8:10; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+              <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:8:10; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
           </div>
         </div>
       </div>
@@ -47,20 +47,20 @@
   
          
         <div class="multi-row">
-            <app-product-card *ngFor="let product of products | slice:2:4; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+            <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:2:4; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
         </div>
         <div class="multi-row">
-            <app-product-card *ngFor="let product of products | slice:0:2; let i = index; let even = even; let odd = odd"  [product]="product"  [even]="even" [odd]="odd"></app-product-card>
+            <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:0:2; let i = index; let even = even; let odd = odd"  [product]="product"  [even]="even" [odd]="odd"></app-product-card>
         </div>
         <div class="multi-row">
-            <app-product-card *ngFor="let product of products | slice:4:6; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+            <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:4:6; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
         </div>
         
         <div class="multi-row">
-            <app-product-card *ngFor="let product of products | slice:8:10; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+            <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:8:10; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
         </div>
         <div class="multi-row">
-          <app-product-card *ngFor="let product of products | slice:6:8; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+          <app-product-card *ngFor="let product of (products| filter:filterBy) | slice:6:8; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
       </div>
         </div>
       </div>
@@ -73,27 +73,24 @@
       
           <div class="row">
             <div id="bestRated" class="owl-theme owl-carousel">
-      
-             
             <div class="multi-row">
-                <app-product-card *ngFor="let product of products | slice:2:4; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+                <app-product-card *ngFor="let product of (products | bestRated:bestRatedFilter) | slice:2:4; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
             </div>
             <div class="multi-row">
-                <app-product-card *ngFor="let product of products | slice:0:2; let i = index; let even = even; let odd = odd"  [product]="product"  [even]="even" [odd]="odd"></app-product-card>
+                <app-product-card *ngFor="let product of (products | bestRated:bestRatedFilter) | slice:0:2; let i = index; let even = even; let odd = odd"  [product]="product"  [even]="even" [odd]="odd"></app-product-card>
             </div>
             <div class="multi-row">
-                <app-product-card *ngFor="let product of products | slice:4:6; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+                <app-product-card *ngFor="let product of (products | bestRated:bestRatedFilter) | slice:4:6; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
             </div>
             
             <div class="multi-row">
-                <app-product-card *ngFor="let product of products | slice:8:10; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+                <app-product-card *ngFor="let product of (products | bestRated:bestRatedFilter) | slice:8:10; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
             </div>
             <div class="multi-row">
-              <app-product-card *ngFor="let product of products | slice:6:8; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
-          </div>
+              <app-product-card *ngFor="let product of (products | bestRated:bestRatedFilter) | slice:6:8; let i = index; let even = even; let odd = odd" [product]="product" [even]="even" [odd]="odd"></app-product-card>
+            </div>
             </div>
           </div>
-      
         </div>
         <!--/End On Sale Tab View -->
   </div>

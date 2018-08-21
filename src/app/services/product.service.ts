@@ -1,6 +1,6 @@
 import { Product } from './../models/product';
 import { CachingService } from './caching.service';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
@@ -12,9 +12,23 @@ import { pipe } from '../../../node_modules/@angular/core/src/render3/pipe';
 })
 export class ProductService extends CachingService {
 
-  BASE_URL = 'http://54.183.87.149:3000/v1';
+  cartAdditionEmitter = new EventEmitter<Product[]>(); // emit for card and single product, minicart listens to it
+  cartTotalEmitter = new EventEmitter<number>(); // emit for price total calculation on, addition, substraction, increase or removal
+  filterTypeEmitter = new EventEmitter<string>(); // emit when filtering through product categories
+  bestRatedEmitter = new EventEmitter<number>(); //emit when filtering through 5 star rated products
+  searchEmitter = new EventEmitter<string>();
+  layoutModeEmitter = new EventEmitter<boolean>();
 
   private allProducts: Product[];
+  private cartAddedProducts: Product[] = [];
+  private cartTotal = 0;
+  private selectedProduct: Product;
+  private filterBy = 'all';
+  private bestRated = 5;
+  private search = '';
+
+  BASE_URL = 'http://54.183.87.149:3000/v1';
+
 
   public constructor(private http: HttpClient) {
     super();
@@ -32,20 +46,40 @@ export class ProductService extends CachingService {
     return this.http.get('../../assets/data/products.json');
   }
 
-  create(product) {
+  setFilter(filterValue: string) {
+    this.filterBy = filterValue;
+    this.filterTypeEmitter.emit(this.filterBy);
   }
 
-  getAll() {
-
+  getFilter() {
+    return this.filterBy;
   }
 
-  get(productId) {
+  setBestRatedFilter(filterValue: number) {
+    this.bestRated = filterValue;
+    this.bestRatedEmitter.emit(this.bestRated);
   }
 
-  update(productId, product) {
+  getBestRatedFilter() {
+    return this.bestRated;
   }
 
-  delete(productId) {
+  searchFilter(searchValue: string) {
+    this.search = searchValue;
+    this.searchEmitter.emit(this.search);
+  }
+
+
+  getSearchFilter() {
+    return this.search;
+  }
+
+  // get max 3 similar products sorted from high price > low
+  getSimilarProducts(prodType: string, prodId: string) {
+    const SIMILAR_PRODUCTS = this.getAllProducts().sort((a, b) => b.price - a.price);
+    return SIMILAR_PRODUCTS.filter((p) => {
+      return p.id !== prodId && p.type === prodType;
+    }).slice(0, 3); // get max 3 items
   }
 
   // HANDLE ALL ERRORS
