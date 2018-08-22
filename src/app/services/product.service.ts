@@ -69,18 +69,17 @@ export class ProductService extends CachingService {
     this.searchEmitter.emit(this.search);
   }
 
-
   getSearchFilter() {
     return this.search;
   }
 
   // get max 3 similar products sorted from high price > low
-  getSimilarProducts(prodType: string, prodId: string) {
-    const SIMILAR_PRODUCTS = this.getAllProducts().sort((a, b) => b.price - a.price);
-    return SIMILAR_PRODUCTS.filter((p) => {
-      return p.id !== prodId && p.type === prodType;
-    }).slice(0, 3); // get max 3 items
-  }
+  // getSimilarProducts(prodType: string, prodId: string) {
+  //   const SIMILAR_PRODUCTS = this.getAllProducts().sort((a, b) => b.price - a.price);
+  //   return SIMILAR_PRODUCTS.filter((p) => {
+  //     return p.id !== prodId && p.type === prodType;
+  //   }).slice(0, 3); // get max 3 items
+  // }
 
   // HANDLE ALL ERRORS
   private handleError(error: HttpErrorResponse) {

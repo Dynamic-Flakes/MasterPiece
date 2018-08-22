@@ -42,7 +42,6 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
         this.searchText = searchValue;
       }
     );
-
     this.productService.bestRatedEmitter.subscribe(
       (besRatedValue: number) => {
         this.bestRatedFilter = besRatedValue;
