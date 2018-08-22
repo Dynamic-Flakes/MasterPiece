@@ -10,7 +10,16 @@ export class Product {
         productSpec: string;
         brand: string;
         location: string;
-        category: string;
+        category: {
+                categoryName: string,
+                categoryImage1: string,
+                categoryImage2: string
+                subcat: {
+                        subcatName: string,
+                        subcatImage1: string,   
+                        subcatImage2: string    
+                        }
+        };
         rating: number = 0;
         type: string;
         quantity: number = 1;

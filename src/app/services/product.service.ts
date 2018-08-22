@@ -81,6 +81,12 @@ export class ProductService extends CachingService {
   //   }).slice(0, 3); // get max 3 items
   // }
 
+  // TOP CATEGOTIES *******//
+  // GET ALL
+  getTopCategories(): Observable<any> {
+    return this.http.get('../../assets/data/top-categories.json');
+  }
+
   // HANDLE ALL ERRORS
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
