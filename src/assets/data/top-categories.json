@@ -1,1 +1,58 @@
-dfsfaf
+[
+    {
+        "categoryId": "12345677",
+        "categoryName": "Electronics",
+        "subCat": [
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Phones"
+            }
+        ]
+    },
+    {
+        "categoryId": "12345677",
+        "categoryName": "Women Cloths",
+        "subCat": [
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Jump Suite"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Glown"
+            },
+            {
+                "subcatId": "24234nn234n",
+                "subcatName": "Skirts"
+            }
+        ]
+    }
+]
