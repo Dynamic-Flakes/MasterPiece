@@ -6,7 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BestRatedPipe implements PipeTransform {
   transform(products: Product[], rating: number): any {
-    if (rating == 5) {
+    if (!products) { return []; }
+    else {
       return products.filter(product => {
         return product.rating == 5;
       });
