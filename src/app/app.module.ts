@@ -72,6 +72,8 @@ import { SearchPipe } from './pipes/search.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { BestRatedPipe } from './pipes/best-rated.pipe';
 import { TopCatCardComponent } from './shop/products/top-cat-card/top-cat-card.component';
+import { AccessoriesCardComponent } from './shop/products/accessories-card/accessories-card.component';
+import { AccessoriesNavComponent } from './shop/products/accessories-card/accessories-nav/accessories-nav.component';
 
 
 const appRoutes: Routes = [
@@ -201,6 +203,8 @@ const appRoutes: Routes = [
     TruncatePipe,
     BestRatedPipe,
     TopCatCardComponent,
+    AccessoriesCardComponent,
+    AccessoriesNavComponent,
   ],
   entryComponents: [IntialSetupCompleteDialog, RegisterSuccessDialog],
   imports: [
