@@ -107,8 +107,25 @@
   <!-- To Categories This Week  -->
   <h1 class="heading">Top Categories This Week</h1>
   <div class="row">
-    <div id="bestseller" class="owl-theme owl-carousel" style="max-width: 100%">
-      <app-top-cat-card></app-top-cat-card>
+    <div id="bestseller" class="owl-theme owl-carousel">
+      <div class="product-layout col-xs-12">
+        <app-top-cat-card [topCat]="topCat" *ngFor="let topCat of topCats | slice:0:1"></app-top-cat-card>
+      </div>
+      <div class="product-layout col-xs-12">
+          <app-top-cat-card [topCat]="topCat" *ngFor="let topCat of topCats | slice:1:2"></app-top-cat-card>        
+      </div>
+      <div class="product-layout col-xs-12">
+          <app-top-cat-card [topCat]="topCat" *ngFor="let topCat of topCats | slice:2:3"></app-top-cat-card>        
+      </div>
+      <div class="product-layout col-xs-12">
+          <app-top-cat-card [topCat]="topCat" *ngFor="let topCat of topCats | slice:3:4"></app-top-cat-card>        
+      </div>
+      <div class="product-layout col-xs-12">
+          <app-top-cat-card [topCat]="topCat" *ngFor="let topCat of topCats | slice:4:5"></app-top-cat-card>        
+      </div>
+      <div class="product-layout col-xs-12">
+          <app-top-cat-card [topCat]="topCat" *ngFor="let topCat of topCats | slice:5:6"></app-top-cat-card>        
+      </div>
     </div>
   </div>
   <!-- /End - Top Categories this week -->

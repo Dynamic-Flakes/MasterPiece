@@ -15,6 +15,7 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
   filterBy: string;
   searchText: string;
   bestRatedFilter: number;
+  topCats: any[];
 
   constructor(public productService: ProductService) { }
 
@@ -47,6 +48,10 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
       (besRatedValue: number) => {
         this.bestRatedFilter = besRatedValue;
       }
+    );
+
+    this.productService.getTopCategories().subscribe(
+      tpCats => { this.topCats = tpCats }
     )
   }
 

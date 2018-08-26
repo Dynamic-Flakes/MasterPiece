@@ -12,7 +12,6 @@ import {
   MatIconModule,
   MatDialogModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shop/navbar/navbar.component';
@@ -217,7 +216,6 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     VendorKycModule,
-    FlexLayoutModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

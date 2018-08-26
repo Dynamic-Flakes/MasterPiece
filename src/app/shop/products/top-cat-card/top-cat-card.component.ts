@@ -1,5 +1,5 @@
 import { ProductService } from './../../../services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-top-cat-card',
@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopCatCardComponent implements OnInit {
   topCats = [];
+  @Input() topCat;
 
   constructor(public productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getTopCategories().subscribe(
-      tpCats => { this.topCats = tpCats }
-    )
+    // this.productService.getTopCategories().subscribe(
+    //   tpCats => { this.topCats = tpCats }
+    // )
   }
 
 }
