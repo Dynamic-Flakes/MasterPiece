@@ -74,6 +74,8 @@ import { BestRatedPipe } from './pipes/best-rated.pipe';
 import { TopCatCardComponent } from './shop/products/top-cat-card/top-cat-card.component';
 import { AccessoriesCardComponent } from './shop/products/accessories-card/accessories-card.component';
 import { AccessoriesNavComponent } from './shop/products/accessories-card/accessories-nav/accessories-nav.component';
+import { SubcatPipe } from './pipes/subcat.pipe';
+import { CategoryPipe } from './pipes/category.pipe';
 
 
 const appRoutes: Routes = [
@@ -205,6 +207,8 @@ const appRoutes: Routes = [
     TopCatCardComponent,
     AccessoriesCardComponent,
     AccessoriesNavComponent,
+    SubcatPipe,
+    CategoryPipe,
   ],
   entryComponents: [IntialSetupCompleteDialog, RegisterSuccessDialog],
   imports: [
