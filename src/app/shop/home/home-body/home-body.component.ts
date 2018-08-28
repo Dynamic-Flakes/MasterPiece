@@ -1,6 +1,8 @@
+import { CategoriesService } from './../../../services/categories.service';
 import { Product } from './../../../models/product';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
+import { Category } from '../../../models/category';
 declare const jquery: any;
 declare const jQuery: any;
 declare const $: any;
@@ -12,12 +14,13 @@ declare const $: any;
 })
 export class HomeBodyComponent implements OnInit, AfterViewInit {
   products: Product[];
+  gadgets: Category[];
   filterBy: string;
   searchText: string;
   bestRatedFilter: number;
   topCats: any[];
 
-  constructor(public productService: ProductService) { }
+  constructor(public productService: ProductService, public catService: CategoriesService) { }
 
   ngOnInit() {
     this.productService.getProducts().subscribe(
@@ -49,10 +52,19 @@ export class HomeBodyComponent implements OnInit, AfterViewInit {
         this.bestRatedFilter = besRatedValue;
       }
     );
-
+    // TOP CATEGORIES
     this.productService.getTopCategories().subscribe(
       tpCats => { this.topCats = tpCats }
-    )
+    );
+    // GADGET SUB-CATEGORY
+    this.catService.getGadgetSubCat().subscribe(
+      gadgets => {
+        console.log(gadgets);
+        this.catService.setAllGadgetSubCat(gadgets);
+        this.gadgets = this.catService.getAllGadgetSubCat();
+      },
+      err => console.log(err)
+    );
   }
 
   setFilter(filterValue: string) {

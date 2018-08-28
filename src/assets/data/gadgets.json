@@ -1,4 +1,5 @@
-{
+[
+    {
         "categoryId": "12345677",
         "categoryName": "Gadgets & Mobile Accessories",
         "categoryImage1": "assets/image/cache/catalog/product/21-280x280.jpg",
@@ -55,3 +56,4 @@
             }
         ]
     }
+]

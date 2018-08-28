@@ -1,3 +1,4 @@
+import { CategoriesService } from './services/categories.service';
 import { ProductService } from './services/product.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -228,7 +229,7 @@ const appRoutes: Routes = [
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
   ],
-  providers: [AuthService, ProductService],
+  providers: [AuthService, ProductService, CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
